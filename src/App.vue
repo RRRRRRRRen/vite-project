@@ -1,5 +1,6 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+console.log('start App.vue');
 </script>
 
 <template>
