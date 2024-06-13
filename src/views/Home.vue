@@ -1,9 +1,9 @@
 <template>
-  <RouterView />
+  <div>Home</div>
 </template>
 
 <script setup>
-console.log("start App script");
+console.log("start Home script");
 </script>
 
 <style scoped></style>

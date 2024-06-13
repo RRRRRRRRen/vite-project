@@ -1,9 +1,9 @@
 <template>
-  <RouterView />
+  <div>Login</div>
 </template>
 
 <script setup>
-console.log("start App script");
+console.log("start Login script");
 </script>
 
 <style scoped></style>

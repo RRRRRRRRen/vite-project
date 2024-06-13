@@ -6,6 +6,11 @@
 
 在 Vue 3 中使用 Pinia 的过程中，`defineStore` 函数用于定义一个新的 store，而这个 store 会自动与之前通过 `createPinia()` 创建的 Pinia 实例绑定起来。以下是 `defineStore` 和 Pinia 实例绑定的详细过程和实现原理。
 
+**安装依赖**
+```shell
+pnpm add pinia
+```
+
 **基本示例**
 
 ```js
@@ -13,11 +18,11 @@ import { createPinia } from "pinia";
 
 const store = createPinia();
 
-export function setupStore(app) {
+const setupStore = (app) => {
   app.use(store);
-}
+};
 
-export { store };
+export { store, setupStore };
 ```
 
 ### 1. `createPinia()`
