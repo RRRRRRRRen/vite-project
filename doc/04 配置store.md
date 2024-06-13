@@ -1,5 +1,13 @@
 # 04 配置 store
 
+## 基本配置
+
+**简介**
+
+在 Vue 3 中使用 Pinia 的过程中，`defineStore` 函数用于定义一个新的 store，而这个 store 会自动与之前通过 `createPinia()` 创建的 Pinia 实例绑定起来。以下是 `defineStore` 和 Pinia 实例绑定的详细过程和实现原理。
+
+**基本示例**
+
 ```js
 import { createPinia } from "pinia";
 
@@ -11,8 +19,6 @@ export function setupStore(app) {
 
 export { store };
 ```
-
-在 Vue 3 中使用 Pinia 的过程中，`defineStore` 函数用于定义一个新的 store，而这个 store 会自动与之前通过 `createPinia()` 创建的 Pinia 实例绑定起来。以下是 `defineStore` 和 Pinia 实例绑定的详细过程和实现原理。
 
 ### 1. `createPinia()`
 
@@ -41,7 +47,7 @@ app.mount("#app");
 
 `defineStore` 是用于定义 store 的核心函数。每次调用 `defineStore` 会创建一个新的 store，包含状态（state）、getter 和 action，并将其注册到当前的 Pinia 实例中。
 
-#### 示例代码
+**示例代码**
 
 ```javascript
 import { defineStore } from "pinia";
@@ -61,7 +67,11 @@ export const useCounterStore = defineStore("counter", {
 });
 ```
 
-### `defineStore` 和 Pinia 实例绑定的原理
+
+
+## `defineStore` 和 Pinia 实例绑定的原理
+
+### 定义步骤
 
 #### 1. **Store 定义**
 
@@ -95,7 +105,7 @@ export const useCounterStore = defineStore("counter", {
 4. **返回 Store 使用函数**:
    - `defineStore` 返回一个函数，这个函数可以在组件中调用，用于获取和使用这个 store。
 
-#### 简化的实现示例
+**示例**
 
 ```javascript
 import { inject, reactive } from "vue";
