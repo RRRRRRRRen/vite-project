@@ -2,6 +2,7 @@
 import { createApp } from "vue";
 // 样式
 import "./style.css";
+import "ant-design-vue/dist/reset.css";
 // 组件
 import App from "./App.vue";
 // 插件

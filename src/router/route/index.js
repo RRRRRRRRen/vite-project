@@ -1,10 +1,21 @@
 const RootRoute = {
   path: "/",
   name: "Root",
-  redirect: "/home",
+  component: () => import("@/layout/index.vue"),
+  redirect: "/child",
   meta: {
     title: "Root",
   },
+  children: [
+    {
+      path: "child",
+      name: "Child",
+      component: () => import("@/views/Child.vue"),
+      meta: {
+        title: "Child",
+      },
+    },
+  ],
 };
 
 const HomeRoute = {
