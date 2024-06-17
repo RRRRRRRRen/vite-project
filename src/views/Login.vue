@@ -2,13 +2,14 @@
   <Form
     class="p-4 login-form"
     :model="formData"
+    :rules="formRules"
     ref="formRef"
     @keypress.enter="handleLogin"
   >
-    <FormItem name="account" class="enter-x">
+    <FormItem name="username" class="enter-x">
       <Input
         size="large"
-        v-model:value="formData.account"
+        v-model:value="formData.username"
         placeholder="userName"
         class="fix-auto-fill"
       />
@@ -77,25 +78,66 @@ import {
   TwitterCircleFilled,
 } from "@ant-design/icons-vue";
 
+import { useUserStore } from "@/store/modules/user";
+
 const ACol = Col;
 const ARow = Row;
 const FormItem = Form.Item;
 const InputPassword = Input.Password;
 
+const userStore = useUserStore();
+
 const rememberMe = ref(false);
 const loading = ref(false);
+const formRef = ref();
+
+const formRules = {
+  username: [
+    {
+      required: true,
+      message: "Please enter the user name",
+      trigger: "blur",
+    },
+  ],
+  password: [
+    {
+      required: true,
+      message: "Please enter the password",
+      trigger: "blur",
+    },
+  ],
+};
 
 const formData = reactive({
-  account: "vben",
+  username: "administrator",
   password: "123456",
 });
 
+const handleValidForm = () => {
+  return new Promise((res, rej) => {
+    formRef.value
+      .validate()
+      .then((data) => {
+        res(data);
+      })
+      .catch((err) => {
+        res(false);
+      });
+  });
+};
+
 const handleLogin = async () => {
-  console.log("handleLogin");
   loading.value = true;
-  setTimeout(() => {
+  try {
+    const data = await handleValidForm();
+    if (data) {
+      userStore.login(data)
+    }
+  } catch (error) {
+    console.log("error", error);
+  } finally {
     loading.value = false;
-  }, 2000);
+  }
 };
 const handleForgetPassword = () => {
   console.log("handleForgetPassword");

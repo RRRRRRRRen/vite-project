@@ -17,4 +17,14 @@ export default defineConfig({
     ],
   },
   plugins: [vue(), UnoCSS()],
+  server: {
+    proxy: {
+      "/api": {
+        // target: "http://10.10.10.143:31225/", // 传动家
+        target: "http://10.10.10.166:31244/", // 新疆神火
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });
