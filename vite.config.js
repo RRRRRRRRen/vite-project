@@ -1,9 +1,9 @@
 import { defineConfig } from "vite";
 import { resolve } from "node:path";
 import vue from "@vitejs/plugin-vue";
+import UnoCSS from "unocss/vite";
 
 const root = process.cwd();
-console.log("root", root);
 const pathResolve = (pathname) => resolve(root, ".", pathname);
 
 // https://vitejs.dev/config/
@@ -16,5 +16,5 @@ export default defineConfig({
       },
     ],
   },
-  plugins: [vue()],
+  plugins: [vue(), UnoCSS()],
 });
