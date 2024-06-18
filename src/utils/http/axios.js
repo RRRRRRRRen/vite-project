@@ -2,15 +2,16 @@ import axios from "axios";
 import { isFunction } from "lodash-es";
 
 class BizAxios {
-  constructor(options) {
-    this.options = options;
-    this.axiosInstance = axios.create(options);
+  constructor(axiosConfig, customOptions) {
+    this.customOptions = customOptions;
+    this.axiosConfig = axiosConfig;
+    this.axiosInstance = axios.create(axiosConfig);
     this.setupInterceptors();
   }
 
   // 设置拦截器
   setupInterceptors() {
-    const { requestInterceptors, responseInterceptors } = this.options;
+    const { requestInterceptors, responseInterceptors } = this.customOptions;
     // 请求拦截器
     this.axiosInstance.interceptors.request.use((config) => {
       if (requestInterceptors && isFunction(requestInterceptors)) {
@@ -44,15 +45,19 @@ class BizAxios {
   }
 
   request(config, options) {
+    const { transformResponse, handleError } = this.customOptions;
     return new Promise((resolve, reject) => {
       this.axiosInstance
-        .request(config, options)
+        .request({
+          ...config,
+          ...options,
+        })
         .then((res) => {
-          console.log("res", res);
-          resolve(res);
+          const newRes = transformResponse(res);
+          resolve(newRes);
         })
         .catch((err) => {
-          console.log("err", err);
+          handleError(err);
           reject(err);
         });
     });

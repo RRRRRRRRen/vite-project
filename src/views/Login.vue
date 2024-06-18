@@ -59,7 +59,7 @@
 <script setup>
 console.log("start Login script");
 
-import { reactive, ref, unref, computed } from "vue";
+import { reactive, ref, unref, computed, onMounted } from "vue";
 
 import {
   Checkbox,
@@ -131,7 +131,7 @@ const handleLogin = async () => {
   try {
     const data = await handleValidForm();
     if (data) {
-      userStore.login(data)
+      userStore.login(data);
     }
   } catch (error) {
     console.log("error", error);
