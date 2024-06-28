@@ -11,11 +11,11 @@ pnpm add vue-router
 **基本示例**
 
 ```js
-import { createRouter, createWebHistory } from "vue-router";
-import { basicRoutes } from "./route";
+import { createRouter, createWebHistory } from 'vue-router';
+import { basicRoutes } from './route';
 
 const router = createRouter({
-  history: createWebHistory("/"),
+  history: createWebHistory('/'),
   routes: basicRoutes,
   strict: true,
 });
@@ -30,8 +30,8 @@ export { router, setupRouter };
 ### 1. 导入模块
 
 ```javascript
-import { createRouter, createWebHistory } from "vue-router";
-import { basicRoutes } from "./route";
+import { createRouter, createWebHistory } from 'vue-router';
+import { basicRoutes } from './route';
 ```
 
 - `createRouter`: 从 `vue-router` 导入的函数，用于创建路由实例。
@@ -42,7 +42,7 @@ import { basicRoutes } from "./route";
 
 ```javascript
 const router = createRouter({
-  history: createWebHistory("/"),
+  history: createWebHistory('/'),
   routes: basicRoutes,
   strict: true,
 });
@@ -85,20 +85,18 @@ export { router, setupRouter };
 
 ```javascript
 // src/main.ts
-import { createApp } from "vue";
-import App from "./App.vue";
-import { setupRouter } from "./router";
+import { createApp } from 'vue';
+import App from './App.vue';
+import { setupRouter } from './router';
 
 const app = createApp(App);
 
 setupRouter(app);
 
-app.mount("#app");
+app.mount('#app');
 ```
 
 这样，就能在 Vue 应用中使用配置好的路由系统。
-
-
 
 ## 配置基础路由
 
@@ -106,11 +104,11 @@ app.mount("#app");
 
 ```javascript
 const RootRoute = {
-  path: "/",
-  name: "Root",
-  redirect: "/home",
+  path: '/',
+  name: 'Root',
+  redirect: '/home',
   meta: {
-    title: "Root",
+    title: 'Root',
   },
 };
 ```
@@ -124,11 +122,11 @@ const RootRoute = {
 
 ```javascript
 const HomeRoute = {
-  path: "/home",
-  name: "Home",
-  component: () => import("@/views/Home.vue"),
+  path: '/home',
+  name: 'Home',
+  component: () => import('@/views/Home.vue'),
   meta: {
-    title: "Home",
+    title: 'Home',
   },
 };
 ```
@@ -142,11 +140,11 @@ const HomeRoute = {
 
 ```javascript
 const LoginRoute = {
-  path: "/login",
-  name: "Login",
-  component: () => import("@/views/Login.vue"),
+  path: '/login',
+  name: 'Login',
+  component: () => import('@/views/Login.vue'),
   meta: {
-    title: "登陆",
+    title: '登陆',
   },
 };
 ```
@@ -174,11 +172,11 @@ export { basicRoutes };
 例如，在路由器配置文件中（如 `src/router/index.ts`），可以这样使用：
 
 ```javascript
-import { createRouter, createWebHistory } from "vue-router";
-import { basicRoutes } from "./route";
+import { createRouter, createWebHistory } from 'vue-router';
+import { basicRoutes } from './route';
 
 const router = createRouter({
-  history: createWebHistory("/"),
+  history: createWebHistory('/'),
   routes: basicRoutes,
   strict: true,
 });
@@ -192,8 +190,6 @@ export { router, setupRouter };
 
 通过这种方式，定义的基本路由会被集成到 Vue 应用的路由系统中。
 
-
-
 ## createWebHistory和createWebHashHistory的区别
 
 > `createWebHistory` 和 `createWebHashHistory` 是 Vue Router 中用于创建路由历史对象的两种不同方法，它们在管理 URL 和浏览器历史记录方面有一些显著区别。
@@ -201,18 +197,22 @@ export { router, setupRouter };
 ### 1. `createWebHistory`
 
 #### 特点
+
 - 使用 HTML5 History API (`pushState`, `replaceState`)。
 - URL 结构更干净，没有 `#` 号。
 - 适用于现代浏览器，不适用于不支持 HTML5 History API 的旧浏览器。
 
 #### 优点
+
 - URL 结构更简洁和美观，例如 `https://example.com/home`。
 - 可以更好地与服务器端渲染（SSR）集成。
 
 #### 缺点
+
 - 需要服务器配置支持，以确保在刷新页面或直接访问嵌套 URL 时，服务器能够正确处理请求。例如，如果用户直接访问 `https://example.com/home`，服务器需要返回 `index.html` 文件而不是 404 错误。
 
 #### 使用示例
+
 ```javascript
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -227,19 +227,23 @@ const router = createRouter({
 ### 2. `createWebHashHistory`
 
 #### 特点
+
 - 使用 URL 哈希 (`#`) 部分进行路由管理。
 - URL 中包含 `#` 号，例如 `https://example.com/#/home`。
 - 不需要服务器配置支持，所有路由都由前端处理。
 
 #### 优点
+
 - 不需要服务器配置支持，适用于所有支持 JavaScript 的浏览器。
 - 适合静态网站部署或不需要服务器端渲染的项目。
 
 #### 缺点
+
 - URL 结构不够简洁和美观。
 - 在某些情况下，哈希路由可能对 SEO（搜索引擎优化）不利。
 
 #### 使用示例
+
 ```javascript
 import { createRouter, createWebHashHistory } from 'vue-router';
 
@@ -254,11 +258,13 @@ const router = createRouter({
 ### 选择使用哪种历史模式
 
 #### 使用 `createWebHistory`
+
 - 项目需要干净的 URL 且服务器支持相应的配置。
 - 项目使用现代浏览器，且可能需要与服务器端渲染集成。
 - 项目需要更好的 SEO 支持。
 
 #### 使用 `createWebHashHistory`
+
 - 项目部署在不支持 HTML5 History API 的环境中。
 - 项目不需要服务器端渲染。
 - 需要简单快速地设置路由，而不需要服务器配置。

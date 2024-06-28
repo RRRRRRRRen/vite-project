@@ -18,7 +18,7 @@ pnpm add ant-design-vue
 
 ```js
 // main.js
-import "ant-design-vue/dist/reset.css";
+import 'ant-design-vue/dist/reset.css';
 ```
 
 **全局样式调整**
@@ -36,8 +36,7 @@ body {
 }
 ```
 
-**搭建基础布局**
-Layout.vue
+**搭建基础布局** Layout.vue
 
 ```vue
 <template>
@@ -65,27 +64,24 @@ Layout.vue
   </Layout>
 </template>
 ```
+
 App.vue
+
 ```vue
 <template>
   <RouterView />
 </template>
 
 <script setup>
-console.log("start App script");
+  console.log('start App script');
 </script>
 
 <style scoped></style>
 ```
 
-
-
 ## 路由层级
 
-App中包裹一级别路由，表示所有页面都需要被路由进行管理
-Layout中包裹二级路由
-
-
+App中包裹一级别路由，表示所有页面都需要被路由进行管理Layout中包裹二级路由
 
 ## ant-design-vue/dist/reset.css的作用
 
@@ -102,7 +98,6 @@ Layout中包裹二级路由
 ### 3. 引入规范的基础样式
 
 重置样式表通常包括设置所有 HTML 元素的边距、内边距、边框、字体大小、行高等为统一的基础值。这为后续的样式自定义提供了一个干净的起点，减少了需要处理的浏览器默认样式的不确定性。
-
 
 ### 总结
 

@@ -27,29 +27,19 @@
       <ACol :span="12">
         <FormItem>
           <!-- No logic, you need to deal with it yourself -->
-          <Checkbox v-model:checked="rememberMe" size="small">
-            rememberMe
-          </Checkbox>
+          <Checkbox v-model:checked="rememberMe" size="small"> rememberMe </Checkbox>
         </FormItem>
       </ACol>
       <ACol :span="12">
         <FormItem class="text-right">
           <!-- No logic, you need to deal with it yourself -->
-          <Button type="link" size="small" @click="handleForgetPassword">
-            forgetPassword
-          </Button>
+          <Button type="link" size="small" @click="handleForgetPassword"> forgetPassword </Button>
         </FormItem>
       </ACol>
     </ARow>
 
     <FormItem class="enter-x">
-      <Button
-        type="primary"
-        size="large"
-        block
-        @click="handleLogin"
-        :loading="loading"
-      >
+      <Button type="primary" size="large" block @click="handleLogin" :loading="loading">
         loginButton
       </Button>
     </FormItem>
@@ -57,95 +47,87 @@
 </template>
 
 <script setup>
-console.log("start Login script");
+  console.log('start Login script');
 
-import { reactive, ref, unref, computed, onMounted } from "vue";
+  import { reactive, ref, unref, computed, onMounted } from 'vue';
 
-import {
-  Checkbox,
-  Form,
-  Input,
-  Row,
-  Col,
-  Button,
-  Divider,
-} from "ant-design-vue";
-import {
-  GithubFilled,
-  WechatFilled,
-  AlipayCircleFilled,
-  GoogleCircleFilled,
-  TwitterCircleFilled,
-} from "@ant-design/icons-vue";
+  import { Checkbox, Form, Input, Row, Col, Button, Divider } from 'ant-design-vue';
+  import {
+    GithubFilled,
+    WechatFilled,
+    AlipayCircleFilled,
+    GoogleCircleFilled,
+    TwitterCircleFilled,
+  } from '@ant-design/icons-vue';
 
-import { useUserStore } from "@/store/modules/user";
+  import { useUserStore } from '@/store/modules/user';
 
-const ACol = Col;
-const ARow = Row;
-const FormItem = Form.Item;
-const InputPassword = Input.Password;
+  const ACol = Col;
+  const ARow = Row;
+  const FormItem = Form.Item;
+  const InputPassword = Input.Password;
 
-const userStore = useUserStore();
+  const userStore = useUserStore();
 
-const rememberMe = ref(false);
-const loading = ref(false);
-const formRef = ref();
+  const rememberMe = ref(false);
+  const loading = ref(false);
+  const formRef = ref();
 
-const formRules = {
-  username: [
-    {
-      required: true,
-      message: "Please enter the user name",
-      trigger: "blur",
-    },
-  ],
-  password: [
-    {
-      required: true,
-      message: "Please enter the password",
-      trigger: "blur",
-    },
-  ],
-};
+  const formRules = {
+    username: [
+      {
+        required: true,
+        message: 'Please enter the user name',
+        trigger: 'blur',
+      },
+    ],
+    password: [
+      {
+        required: true,
+        message: 'Please enter the password',
+        trigger: 'blur',
+      },
+    ],
+  };
 
-const formData = reactive({
-  username: "administrator",
-  password: "123456",
-});
-
-const handleValidForm = () => {
-  return new Promise((res, rej) => {
-    formRef.value
-      .validate()
-      .then((data) => {
-        res(data);
-      })
-      .catch((err) => {
-        res(false);
-      });
+  const formData = reactive({
+    username: 'administrator',
+    password: '123456',
   });
-};
 
-const handleLogin = async () => {
-  loading.value = true;
-  try {
-    const data = await handleValidForm();
-    if (data) {
-      userStore.login(data);
+  const handleValidForm = () => {
+    return new Promise((res, rej) => {
+      formRef.value
+        .validate()
+        .then((data) => {
+          res(data);
+        })
+        .catch((err) => {
+          res(false);
+        });
+    });
+  };
+
+  const handleLogin = async () => {
+    loading.value = true;
+    try {
+      const data = await handleValidForm();
+      if (data) {
+        userStore.login(data);
+      }
+    } catch (error) {
+      console.log('error', error);
+    } finally {
+      loading.value = false;
     }
-  } catch (error) {
-    console.log("error", error);
-  } finally {
-    loading.value = false;
-  }
-};
-const handleForgetPassword = () => {
-  console.log("handleForgetPassword");
-};
+  };
+  const handleForgetPassword = () => {
+    console.log('handleForgetPassword');
+  };
 </script>
 
 <style lang="less" scoped>
-.login-form {
-  background-color: #ccc;
-}
+  .login-form {
+    background-color: #ccc;
+  }
 </style>

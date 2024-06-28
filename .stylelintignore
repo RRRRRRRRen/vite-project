@@ -1,0 +1,13 @@
+# 或略项目中的静态资源
+/src/assets
+
+# 忽略特定目录
+dist
+node_modules
+public
+
+# 忽略所有 JavaScript 文件
+**/*.js
+**/*.jsx
+**/*.tsx
+**/*.ts

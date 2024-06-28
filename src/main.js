@@ -1,18 +1,18 @@
 // 核心
-import { createApp } from "vue";
+import { createApp } from 'vue';
 // 样式
-import "./style.css";
-import "ant-design-vue/dist/reset.css";
-import "virtual:uno.css";
+import './style.css';
+import 'ant-design-vue/dist/reset.css';
+import 'virtual:uno.css';
 // 组件
-import App from "./App.vue";
+import App from './App.vue';
 // 插件
-import { setupStore } from "@/store";
-import { setupRouter } from "./router";
+import { setupStore } from '@/store';
+import { setupRouter } from './router';
 
 const app = createApp(App);
 setupStore(app);
 setupRouter(app);
 
-console.log("before app.mount");
-app.mount("#app");
+console.log('before app.mount');
+app.mount('#app');

@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-console.log("start Home script");
+  console.log('start Home script');
 </script>
 
 <style scoped></style>

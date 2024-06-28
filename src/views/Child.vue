@@ -3,7 +3,5 @@
 </template>
 
 <script setup>
-console.log("start Child script");
+  console.log('start Child script');
 </script>
-
-<style scoped></style>

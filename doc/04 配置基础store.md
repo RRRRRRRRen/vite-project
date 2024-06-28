@@ -7,6 +7,7 @@
 在 Vue 3 中使用 Pinia 的过程中，`defineStore` 函数用于定义一个新的 store，而这个 store 会自动与之前通过 `createPinia()` 创建的 Pinia 实例绑定起来。以下是 `defineStore` 和 Pinia 实例绑定的详细过程和实现原理。
 
 **安装依赖**
+
 ```shell
 pnpm add pinia
 ```
@@ -14,7 +15,7 @@ pnpm add pinia
 **基本示例**
 
 ```js
-import { createPinia } from "pinia";
+import { createPinia } from 'pinia';
 
 const store = createPinia();
 
@@ -30,7 +31,7 @@ export { store, setupStore };
 首先，我们通过调用 `createPinia()` 创建一个 Pinia 实例。这个实例是整个应用的状态管理中心。
 
 ```javascript
-import { createPinia } from "pinia";
+import { createPinia } from 'pinia';
 
 const pinia = createPinia();
 ```
@@ -40,12 +41,12 @@ const pinia = createPinia();
 然后，我们将这个 Pinia 实例注入到 Vue 应用中。
 
 ```javascript
-import { createApp } from "vue";
-import App from "./App.vue";
+import { createApp } from 'vue';
+import App from './App.vue';
 
 const app = createApp(App);
 app.use(pinia);
-app.mount("#app");
+app.mount('#app');
 ```
 
 ### 3. `defineStore`
@@ -55,9 +56,9 @@ app.mount("#app");
 **示例代码**
 
 ```javascript
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore("counter", {
+export const useCounterStore = defineStore('counter', {
   state: () => ({
     count: 0,
   }),
@@ -71,8 +72,6 @@ export const useCounterStore = defineStore("counter", {
   },
 });
 ```
-
-
 
 ## `defineStore` 和 Pinia 实例绑定的原理
 
@@ -113,14 +112,14 @@ export const useCounterStore = defineStore("counter", {
 **示例**
 
 ```javascript
-import { inject, reactive } from "vue";
+import { inject, reactive } from 'vue';
 
 // 模拟 createPinia 和 app.use
 function createPinia() {
   const stores = {};
   return {
     install(app) {
-      app.provide("pinia", this);
+      app.provide('pinia', this);
     },
     stores,
   };
@@ -129,11 +128,9 @@ function createPinia() {
 // 模拟 defineStore
 function defineStore(id, storeDefinition) {
   return function useStore() {
-    const pinia = inject("pinia");
+    const pinia = inject('pinia');
     if (!pinia) {
-      throw new Error(
-        "Pinia instance not found. Please install Pinia using app.use(pinia)."
-      );
+      throw new Error('Pinia instance not found. Please install Pinia using app.use(pinia).');
     }
     if (!pinia.stores[id]) {
       const store = {
@@ -160,7 +157,7 @@ const app = {
 
 app.use(pinia);
 
-const useCounterStore = defineStore("counter", {
+const useCounterStore = defineStore('counter', {
   state: () => ({ count: 0 }),
   actions: {
     increment() {

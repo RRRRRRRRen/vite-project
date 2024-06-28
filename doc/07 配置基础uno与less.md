@@ -12,7 +12,7 @@ pnpm add -D unocss
    > 根目录下配置 uno.config.js 文件
 
 ```js
-import { defineConfig, presetTypography, presetUno } from "unocss";
+import { defineConfig, presetTypography, presetUno } from 'unocss';
 
 export default defineConfig({
   presets: [presetUno(), presetTypography()],
@@ -23,7 +23,7 @@ export default defineConfig({
    > 配置 vite 插件 UnoCSS()
 
 ```js
-import UnoCSS from "unocss/vite";
+import UnoCSS from 'unocss/vite';
 
 export default defineConfig({
   // ...
@@ -35,7 +35,7 @@ export default defineConfig({
    > 在入口文件中引入 virtual:uno.css
 
 ```js
-import "virtual:uno.css";
+import 'virtual:uno.css';
 ```
 
 ## 配置 less
@@ -65,7 +65,7 @@ pnpm add -D less
 假设 `uno.css` 位于 `src/styles/uno.css`：
 
 ```javascript
-import "./styles/uno.css"; // 确保路径正确
+import './styles/uno.css'; // 确保路径正确
 ```
 
 此导入方式将使 Webpack（或其他构建工具）在构建过程中处理 `uno.css` 文件，并将其包含在最终的捆绑包中。
@@ -83,7 +83,7 @@ import "./styles/uno.css"; // 确保路径正确
 如果你在使用 UnoCSS 并配置了相应的 Vite 插件，可以这样使用：
 
 ```javascript
-import "virtual:uno.css";
+import 'virtual:uno.css';
 ```
 
 这个语句将由 UnoCSS 插件处理，生成并注入相应的 CSS 样式。Vite 或 UnoCSS 插件会拦截 `virtual:uno.css` 导入并生成对应的 CSS。
@@ -130,19 +130,19 @@ Vite 是一个现代的前端构建工具，原生支持虚拟模块。以下是
 
 ```javascript
 // vite.config.js
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
     {
-      name: "virtual-module",
+      name: 'virtual-module',
       resolveId(id) {
-        if (id === "virtual:example") {
+        if (id === 'virtual:example') {
           return id; // 返回 id，表示该模块由此插件处理
         }
       },
       load(id) {
-        if (id === "virtual:example") {
+        if (id === 'virtual:example') {
           return 'export default "This is a virtual module!";'; // 返回模块内容
         }
       },
@@ -155,7 +155,7 @@ export default defineConfig({
 
 ```javascript
 // main.js
-import message from "virtual:example";
+import message from 'virtual:example';
 console.log(message); // 输出: This is a virtual module!
 ```
 
@@ -167,8 +167,8 @@ UnoCSS 是一个按需生成 CSS 的工具，可以通过虚拟导入方式引�
 
 ```javascript
 // vite.config.js
-import { defineConfig } from "vite";
-import UnoCSS from "unocss/vite";
+import { defineConfig } from 'vite';
+import UnoCSS from 'unocss/vite';
 
 export default defineConfig({
   plugins: [UnoCSS()],
@@ -177,7 +177,7 @@ export default defineConfig({
 
 ```javascript
 // main.js
-import "virtual:uno.css"; // 引入由 UnoCSS 生成的 CSS
+import 'virtual:uno.css'; // 引入由 UnoCSS 生成的 CSS
 ```
 
 #### 4.2. 动态配置
@@ -186,20 +186,20 @@ import "virtual:uno.css"; // 引入由 UnoCSS 生成的 CSS
 
 ```javascript
 // vite.config.js
-import { defineConfig } from "vite";
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
     {
-      name: "dynamic-config",
+      name: 'dynamic-config',
       resolveId(id) {
-        if (id === "virtual:config") {
+        if (id === 'virtual:config') {
           return id;
         }
       },
       load(id) {
-        if (id === "virtual:config") {
-          const config = { apiEndpoint: "https://api.example.com" };
+        if (id === 'virtual:config') {
+          const config = { apiEndpoint: 'https://api.example.com' };
           return `export default ${JSON.stringify(config)};`;
         }
       },
@@ -210,7 +210,7 @@ export default defineConfig({
 
 ```javascript
 // main.js
-import config from "virtual:config";
+import config from 'virtual:config';
 console.log(config.apiEndpoint); // 输出: https://api.example.com
 ```
 

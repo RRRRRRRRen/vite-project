@@ -1,5 +1,5 @@
-import axios from "axios";
-import { isFunction } from "lodash-es";
+import axios from 'axios';
+import { isFunction } from 'lodash-es';
 
 class BizAxios {
   constructor(axiosConfig, customOptions) {
@@ -29,19 +29,19 @@ class BizAxios {
   }
 
   get(config, options) {
-    return this.request({ ...config, method: "GET" }, options);
+    return this.request({ ...config, method: 'GET' }, options);
   }
 
   post(config, options) {
-    return this.request({ ...config, method: "POST" }, options);
+    return this.request({ ...config, method: 'POST' }, options);
   }
 
   put(config, options) {
-    return this.request({ ...config, method: "PUT" }, options);
+    return this.request({ ...config, method: 'PUT' }, options);
   }
 
   delete(config, options) {
-    return this.request({ ...config, method: "DELETE" }, options);
+    return this.request({ ...config, method: 'DELETE' }, options);
   }
 
   request(config, options) {

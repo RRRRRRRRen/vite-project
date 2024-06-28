@@ -13,7 +13,7 @@ pnpm add axios
 ```js
 const axiosConfig = {
   timeout: 10 * 1000,
-  headers: { "Content-Type": CONTENT_TYPE.JSON },
+  headers: { 'Content-Type': CONTENT_TYPE.JSON },
 };
 ```
 
@@ -109,13 +109,13 @@ const customOptions = {
 
 ```typescript
 // src/utils/http/axios.ts
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from 'axios';
 
 const service: AxiosInstance = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API || "http://localhost:3000/api",
+  baseURL: process.env.VUE_APP_BASE_API || 'http://localhost:3000/api',
   timeout: 5000,
   headers: {
-    "Content-Type": "application/json;charset=UTF-8",
+    'Content-Type': 'application/json;charset=UTF-8',
   },
 });
 
@@ -130,15 +130,15 @@ export default service;
 // src/utils/http/axios.ts
 service.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
+      config.headers['Authorization'] = `Bearer ${token}`;
     }
     return config;
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 ```
 
@@ -153,7 +153,7 @@ service.interceptors.response.use(
     const res = response.data;
     if (res.code !== 200) {
       // 这里可以进行错误处理，例如提示错误信息
-      return Promise.reject(new Error(res.message || "Error"));
+      return Promise.reject(new Error(res.message || 'Error'));
     } else {
       return res;
     }
@@ -161,7 +161,7 @@ service.interceptors.response.use(
   (error) => {
     // 对响应错误做些什么
     return Promise.reject(error);
-  }
+  },
 );
 ```
 
@@ -171,24 +171,21 @@ service.interceptors.response.use(
 
 ```typescript
 // src/api/user.ts
-import service from "@/utils/http/axios";
-import { AxiosPromise } from "axios";
+import service from '@/utils/http/axios';
+import { AxiosPromise } from 'axios';
 
-export function login(data: {
-  username: string;
-  password: string;
-}): AxiosPromise<any> {
+export function login(data: { username: string; password: string }): AxiosPromise<any> {
   return service({
-    url: "/user/login",
-    method: "post",
+    url: '/user/login',
+    method: 'post',
     data,
   });
 }
 
 export function getUserInfo(): AxiosPromise<any> {
   return service({
-    url: "/user/info",
-    method: "get",
+    url: '/user/info',
+    method: 'get',
   });
 }
 ```
@@ -198,7 +195,7 @@ export function getUserInfo(): AxiosPromise<any> {
 在请求拦截器和响应拦截器中处理错误。可以使用全局错误处理机制，例如显示错误通知。
 
 ```typescript
-import { notification } from "ant-design-vue";
+import { notification } from 'ant-design-vue';
 
 // 响应拦截器
 service.interceptors.response.use(
@@ -209,18 +206,18 @@ service.interceptors.response.use(
     if (error.response) {
       // 服务器返回的错误
       notification.error({
-        message: "Error",
-        description: error.response.data.message || "An error occurred",
+        message: 'Error',
+        description: error.response.data.message || 'An error occurred',
       });
     } else {
       // 请求错误
       notification.error({
-        message: "Error",
-        description: error.message || "An error occurred",
+        message: 'Error',
+        description: error.message || 'An error occurred',
       });
     }
     return Promise.reject(error);
-  }
+  },
 );
 ```
 
@@ -250,13 +247,10 @@ interface LoginResponse {
   };
 }
 
-export function login(data: {
-  username: string;
-  password: string;
-}): AxiosPromise<LoginResponse> {
+export function login(data: { username: string; password: string }): AxiosPromise<LoginResponse> {
   return service({
-    url: "/user/login",
-    method: "post",
+    url: '/user/login',
+    method: 'post',
     data,
   });
 }
