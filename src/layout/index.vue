@@ -24,22 +24,23 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue';
-  import { Layout, Menu } from 'ant-design-vue';
-  import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue';
-  const { Header, Sider, Content } = Layout;
-  const { Item } = Menu;
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue';
+import { Layout, Menu } from 'ant-design-vue';
+import { ref } from 'vue';
 
-  const selectedKeys = ref(['1']);
+const { Header, Sider, Content } = Layout;
+const { Item } = Menu;
+
+const selectedKeys = ref(['1']);
 </script>
 
 <style scoped lang="less">
-  .layout {
-    width: 100%;
-    height: 100%;
-  }
+.layout {
+  width: 100%;
+  height: 100%;
+}
 
-  .header {
-    background-color: #fff;
-  }
+.header {
+  background-color: #fff;
+}
 </style>

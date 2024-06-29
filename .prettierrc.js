@@ -5,7 +5,7 @@
 const config = {
   printWidth: 100,
   semi: true,
-  vueIndentScriptAndStyle: true,
+  vueIndentScriptAndStyle: false,
   singleQuote: true,
   trailingComma: 'all',
   proseWrap: 'never',

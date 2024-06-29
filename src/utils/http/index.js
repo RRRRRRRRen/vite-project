@@ -1,7 +1,9 @@
-import { BizAxios } from './axios';
-import { useUserStoreWithOut } from '@/store/modules/user';
-import { CONTENT_TYPE } from './constant';
 import { notification } from 'ant-design-vue';
+
+import { useUserStoreWithOut } from '@/store/modules/user';
+
+import { BizAxios } from './axios';
+import { CONTENT_TYPE } from './constant';
 
 const customOptions = {
   requestInterceptors: (config) => {

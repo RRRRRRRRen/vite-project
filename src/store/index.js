@@ -6,4 +6,4 @@ const setupStore = (app) => {
   app.use(store);
 };
 
-export { store, setupStore };
+export { setupStore, store };

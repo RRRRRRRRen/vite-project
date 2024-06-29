@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-  console.log('start App script');
+console.log('start App script');
 </script>
 
 <style scoped></style>

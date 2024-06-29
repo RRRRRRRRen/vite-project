@@ -1,9 +1,10 @@
-import { defineStore } from 'pinia';
-import { store } from '@/store';
-import { loginApi, testAuth, testNoAuth } from '@/api/modules/user';
 import { notification } from 'ant-design-vue';
 import { without } from 'lodash-es';
+import { defineStore } from 'pinia';
+
+import { loginApi, testAuth, testNoAuth } from '@/api/modules/user';
 import { router } from '@/router';
+import { store } from '@/store';
 
 export const useUserStore = defineStore('user', {
   state: () => {

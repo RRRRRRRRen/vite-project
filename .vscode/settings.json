@@ -39,5 +39,19 @@
   },
 
   // ! 插件 - stylelint
-  "stylelint.validate": ["css", "less", "html", "vue"]
+  "stylelint.validate": ["css", "less", "html", "vue"],
+
+  // ! 插件 - ESLint
+  "eslint.enable": true,
+  "eslint.quiet": true,
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue"
+  ],
+  "eslint.lintTask.enable": true
 }
