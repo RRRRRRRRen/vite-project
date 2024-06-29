@@ -5,11 +5,17 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
+    "commit": "git-cz",
     "dev": "vite",
     "lint:eslint": "eslint --cache --max-warnings 0 \"**/*.{vue,ts,tsx,js,jsx,cjs,mjs,html}\" --fix",
     "lint:prettier": "prettier --write .",
     "lint:stylelint": "stylelint --fix \"**/*.{vue,css,less,html}\"  --formatter verbose",
     "preview": "vite preview"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
@@ -22,8 +28,12 @@
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@typescript-eslint/parser": "^7.14.1",
     "@vitejs/plugin-vue": "^5.0.4",
+    "commitizen": "^4.3.0",
+    "cz-git": "^1.9.3",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-html": "^8.1.1",
