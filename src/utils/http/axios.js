@@ -45,10 +45,11 @@ class BizAxios {
   }
 
   request(config, options) {
-    const { transformResponse, handleError } = this.customOptions;
+    const { transformResponse, handleError, withToken } = this.customOptions;
     return new Promise((resolve, reject) => {
       this.axiosInstance
         .request({
+          withToken,
           ...config,
           ...options,
         })

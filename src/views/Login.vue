@@ -112,7 +112,7 @@ const handleLogin = async () => {
   try {
     const data = await handleValidForm();
     if (data) {
-      userStore.login(data);
+      userStore.loginAction(data);
     }
   } catch (error) {
     console.log('error', error);

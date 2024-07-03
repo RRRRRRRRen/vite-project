@@ -8,10 +8,9 @@ import { CONTENT_TYPE } from './constant';
 const customOptions = {
   requestInterceptors: (config) => {
     const userStore = useUserStoreWithOut();
-
     // 设置token
     if (config.withToken) {
-      const token = userStore.token;
+      const token = userStore.getToken;
       config.headers.Authorization = 'Bearer ' + token;
     }
 
